@@ -1,0 +1,739 @@
+2025-01-31,08:34:56.054 | promptwizard.glue.promptopt.instantiate | __init__:
+Setup configurations parameters: [('assistant_llm', AssistantLLM(prompt_opt='gpt-4o')), ('description', None), ('dir_info', Dir(base_dir='logs', log_dir_name='glue_logs')), ('experiment_name', 'credit_agreement'), ('mode', 'offline')] 
+
+======================================================================================================================================================
+
+
+2025-01-31,08:34:56.054 | promptwizard.glue.promptopt.instantiate | __init__:
+Prompt Optimization parameters: [('answer_format', 'For each question present the reasoning followed by the correct answer.'), ('base_instruction', 'Lets think step by step and generate graphical reasoning to come to response.'), ('few_shot_count', 0), ('generate_expert_identity', True), ('generate_intent_keywords', True), ('generate_reasoning', True), ('max_eval_batches', 6), ('min_correct_count', 3), ('mutate_refine_iterations', 3), ('mutation_rounds', 3), ('num_train_examples', 0), ('prompt_technique_name', 'critique_n_refine'), ('questions_batch_size', 1), ('refine_instruction', True), ('refine_task_eg_iterations', 3), ('seen_set_size', 0), ('style_variation', 5), ('task_description', 'You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.'), ('top_n', 1), ('unique_model_id', 'gpt-4o-mini')] 
+
+======================================================================================================================================================
+
+
+2025-01-31,08:34:56.057 | promptwizard.glue.promptopt.instantiate | get_best_prompt:
+
+======================================================================================================================================================
+ + Starting iteration: 1 
+ current_base_instruction: Lets think step by step and generate graphical reasoning to come to response.
+
+2025-01-31,08:34:59.975 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:34:59.976 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:34:59.976 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:00.070 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB28EC0>
+
+2025-01-31,08:35:00.070 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0BB094D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:00.103 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B89ED50>
+
+2025-01-31,08:35:00.104 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:00.104 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:00.104 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:00.105 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:00.105 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:02.747 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:02 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2465'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199620'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'114ms'), (b'x-request-id', b'req_e60ac39d6e2c996b440a26f973c8a412'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=hQYp.js0zjJu_u2LJdKeYzPcMEvFB7.HdNcwWitcK0g-1738330502-1.0.1.1-VMFGOmtiGOKDN4jFbjJN2ZJRJcqtcIHaXIvg9dEXL_k5Yo6IjTeV9jLuSWVrMOPE75I.EacNGFE7KXm02qmqfQ; path=/; expires=Fri, 31-Jan-25 14:05:02 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=iemp3yJINCTti.imMgWloYIsfTYNNxCvIyJ2KAMNBHo-1738330502695-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15197fd53338-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:02.749 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:02.749 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:02.769 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:02.769 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:02.769 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:02.769 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:02 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2465'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199620'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '114ms'), ('x-request-id', 'req_e60ac39d6e2c996b440a26f973c8a412'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=hQYp.js0zjJu_u2LJdKeYzPcMEvFB7.HdNcwWitcK0g-1738330502-1.0.1.1-VMFGOmtiGOKDN4jFbjJN2ZJRJcqtcIHaXIvg9dEXL_k5Yo6IjTeV9jLuSWVrMOPE75I.EacNGFE7KXm02qmqfQ; path=/; expires=Fri, 31-Jan-25 14:05:02 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=iemp3yJINCTti.imMgWloYIsfTYNNxCvIyJ2KAMNBHo-1738330502695-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15197fd53338-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:02.769 | openai._base_client | _request:
+request_id: req_e60ac39d6e2c996b440a26f973c8a412
+
+2025-01-31,08:35:02.806 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=0 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START> Let's break down the problem step by step and create a visual representation to derive the response. <END>
+
+<START> We should analyze the situation methodically and develop a graphical reasoning approach to arrive at the solution. <END>
+
+<START> Let's approach this systematically and construct a graph to illustrate the reasoning that leads us to the answer. <END>
+
+<START> We can tackle this problem incrementally and design a graphical reasoning framework to help us find the response. <END>
+
+<START> Let's think through this in a structured manner and generate a visual reasoning diagram to guide us to the conclusion. <END>
+
+2025-01-31,08:35:03.030 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:03.031 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:03.031 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:03.121 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B1BC500>
+
+2025-01-31,08:35:03.121 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0ACB26D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:03.152 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B1BC230>
+
+2025-01-31,08:35:03.152 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:03.152 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:03.153 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:03.153 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:03.153 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:05.412 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:05 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2081'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199620'), (b'x-ratelimit-reset-requests', b'14.231s'), (b'x-ratelimit-reset-tokens', b'114ms'), (b'x-request-id', b'req_c81a38febe64aedb1bbf51279b8b7485'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Oib9MKtL.sDnKcTm0dcqOyHgF.GextfnVC3DOaM2Gb0-1738330505-1.0.1.1-eu2eTHx.DrE2N0KtOaNAsdE8vEQqPE59XytmVRJv4HmKRjcwRMd0L2PcDccRLqqH_ZVqRKdqPYySZ1S47Sz9hw; path=/; expires=Fri, 31-Jan-25 14:05:05 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=hZarpVD9gcnVC.2TJQkxZS.hVoMGU5ymrEGV6hUTro4-1738330505349-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa152c89fa4237-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:05.412 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:05.413 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:05.413 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:05.414 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:05.414 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:05.414 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:05 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2081'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9998'), ('x-ratelimit-remaining-tokens', '199620'), ('x-ratelimit-reset-requests', '14.231s'), ('x-ratelimit-reset-tokens', '114ms'), ('x-request-id', 'req_c81a38febe64aedb1bbf51279b8b7485'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Oib9MKtL.sDnKcTm0dcqOyHgF.GextfnVC3DOaM2Gb0-1738330505-1.0.1.1-eu2eTHx.DrE2N0KtOaNAsdE8vEQqPE59XytmVRJv4HmKRjcwRMd0L2PcDccRLqqH_ZVqRKdqPYySZ1S47Sz9hw; path=/; expires=Fri, 31-Jan-25 14:05:05 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=hZarpVD9gcnVC.2TJQkxZS.hVoMGU5ymrEGV6hUTro4-1738330505349-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa152c89fa4237-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:05.414 | openai._base_client | _request:
+request_id: req_c81a38febe64aedb1bbf51279b8b7485
+
+2025-01-31,08:35:05.416 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=1 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START> Let's break down the problem step by step and create a visual representation to arrive at the solution. <END>
+
+<START> We should analyze the situation methodically and develop a graphical reasoning approach to derive the answer. <END>
+
+<START> Let's approach this systematically and construct a graph to illustrate our reasoning in order to reach a conclusion. <END>
+
+<START> We can tackle this issue incrementally and design a graphical reasoning framework to help us find the response. <END>
+
+<START> Let's think through the problem in a structured manner and generate a visual reasoning diagram to guide us to the answer. <END>
+
+2025-01-31,08:35:05.635 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:05.636 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:05.636 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:05.674 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B1BF5F0>
+
+2025-01-31,08:35:05.674 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0ACB2CD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:05.695 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B1BF2F0>
+
+2025-01-31,08:35:05.695 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:05.696 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:05.696 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:05.696 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:05.696 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:08.034 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:07 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2188'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199620'), (b'x-ratelimit-reset-requests', b'20.327s'), (b'x-ratelimit-reset-tokens', b'114ms'), (b'x-request-id', b'req_412bf222e7d719645c440414ec798b60'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=uxXiI4KBJO845WuP4R0kpLa0SkHvv8VuFQvLJK5VbrI-1738330507-1.0.1.1-hEzaVlbjkjWPK.YA3Me_Wkm0lwnHIdXRuoY8vUz2PG5FP_Md50.CERIINf.boQ.zBB8Uy899p5T.g_S3HVRWxA; path=/; expires=Fri, 31-Jan-25 14:05:07 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=ebFWBHsFGz_P9jwr9wIGMNWF_gIHBJhGTV1lJn.Xwa8-1738330507983-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa153c6b8b727d-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:08.035 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:08.035 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:08.036 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:08.036 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:08.036 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:08.036 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:07 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2188'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9997'), ('x-ratelimit-remaining-tokens', '199620'), ('x-ratelimit-reset-requests', '20.327s'), ('x-ratelimit-reset-tokens', '114ms'), ('x-request-id', 'req_412bf222e7d719645c440414ec798b60'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=uxXiI4KBJO845WuP4R0kpLa0SkHvv8VuFQvLJK5VbrI-1738330507-1.0.1.1-hEzaVlbjkjWPK.YA3Me_Wkm0lwnHIdXRuoY8vUz2PG5FP_Md50.CERIINf.boQ.zBB8Uy899p5T.g_S3HVRWxA; path=/; expires=Fri, 31-Jan-25 14:05:07 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=ebFWBHsFGz_P9jwr9wIGMNWF_gIHBJhGTV1lJn.Xwa8-1738330507983-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa153c6b8b727d-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:08.036 | openai._base_client | _request:
+request_id: req_412bf222e7d719645c440414ec798b60
+
+2025-01-31,08:35:08.038 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=2 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START> Let's break down the problem step by step and create a visual representation to arrive at the solution. <END>
+
+<START> We should analyze the situation incrementally and develop a graphical reasoning approach to derive the answer. <END>
+
+<START> Let's approach this systematically and construct a graph to illustrate our reasoning process in order to find the response. <END>
+
+<START> We can tackle this issue in a stepwise manner and generate a graphical reasoning framework to guide us to the conclusion. <END>
+
+<START> Let's think through this methodically and create a visual reasoning diagram to help us reach the final answer. <END>
+
+2025-01-31,08:35:08.257 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:08.258 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:08.258 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:08.292 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD090B2780>
+
+2025-01-31,08:35:08.292 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0ACB3650> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:08.317 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0B1BFA10>
+
+2025-01-31,08:35:08.318 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:08.318 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:08.318 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:08.318 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:08.318 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:10.297 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:10 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'1814'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'199620'), (b'x-ratelimit-reset-requests', b'26.346s'), (b'x-ratelimit-reset-tokens', b'114ms'), (b'x-request-id', b'req_8363fcb452aede4e39b67b33bde1aabb'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=66GiktjH2XLEpDPS4EQzlyzrqVZ7UHCagvUL1nnGF40-1738330510-1.0.1.1-IlxXh.56VJ6t5T0YIabD9zE_WkfB_OpcaZNy0vpJSAy_ioVIVLP5WqlZ..nFX3qUE1NjV36UsBPcDY5KeB3pVQ; path=/; expires=Fri, 31-Jan-25 14:05:10 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=BSploFcMk37Bt98kQ7d9qkc7leap33szNNXOufyNZlU-1738330510244-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa154cddae8c41-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:10.298 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:10.298 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:10.299 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:10.299 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:10.299 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:10.300 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:10 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '1814'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9996'), ('x-ratelimit-remaining-tokens', '199620'), ('x-ratelimit-reset-requests', '26.346s'), ('x-ratelimit-reset-tokens', '114ms'), ('x-request-id', 'req_8363fcb452aede4e39b67b33bde1aabb'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=66GiktjH2XLEpDPS4EQzlyzrqVZ7UHCagvUL1nnGF40-1738330510-1.0.1.1-IlxXh.56VJ6t5T0YIabD9zE_WkfB_OpcaZNy0vpJSAy_ioVIVLP5WqlZ..nFX3qUE1NjV36UsBPcDY5KeB3pVQ; path=/; expires=Fri, 31-Jan-25 14:05:10 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=BSploFcMk37Bt98kQ7d9qkc7leap33szNNXOufyNZlU-1738330510244-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa154cddae8c41-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:10.300 | openai._base_client | _request:
+request_id: req_8363fcb452aede4e39b67b33bde1aabb
+
+2025-01-31,08:35:10.304 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=3 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START> Let's break down the problem step by step and create a visual representation to derive the response. <END>
+
+<START> We should analyze the situation methodically and develop a graphical reasoning approach to arrive at the solution. <END>
+
+<START> Let's approach this systematically and construct a graph to illustrate the reasoning that leads to the answer. <END>
+
+<START> We can think through this in a structured manner and generate a visual reasoning diagram to help us find the response. <END>
+
+<START> Let's consider this step by step and create a graphical reasoning framework to guide us to the answer. <END>
+
+2025-01-31,08:35:10.526 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:10.527 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:10.528 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:10.551 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB818B0>
+
+2025-01-31,08:35:10.551 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0AEF83D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:10.580 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB815E0>
+
+2025-01-31,08:35:10.581 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:10.581 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:10.581 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:10.581 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:10.581 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:18.981 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:18 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'7385'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'199095'), (b'x-ratelimit-reset-requests', b'32.716s'), (b'x-ratelimit-reset-tokens', b'271ms'), (b'x-request-id', b'req_65ce065539e55297630205c54a65d5cb'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=rhku.Agr61JZJy5E6bfffW_zJxkc2h_X.wccY7moiRo-1738330518-1.0.1.1-E5R1M7TCEaaGlHERolMlEZe0eGJxY4f21ycAEZOsMqU4JJFco5YpPCOs7Vp6Rl5BiCqQhEuI3J6BSpjg3R85Kw; path=/; expires=Fri, 31-Jan-25 14:05:18 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=uVB5cLqqaLcsYww.bJ5h2minyb5kXrlV9M7pEGm4PfY-1738330518928-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa155af8187c9f-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:18.982 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:18.982 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:18.986 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:18.987 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:18.987 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:18.987 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:18 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '7385'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9996'), ('x-ratelimit-remaining-tokens', '199095'), ('x-ratelimit-reset-requests', '32.716s'), ('x-ratelimit-reset-tokens', '271ms'), ('x-request-id', 'req_65ce065539e55297630205c54a65d5cb'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=rhku.Agr61JZJy5E6bfffW_zJxkc2h_X.wccY7moiRo-1738330518-1.0.1.1-E5R1M7TCEaaGlHERolMlEZe0eGJxY4f21ycAEZOsMqU4JJFco5YpPCOs7Vp6Rl5BiCqQhEuI3J6BSpjg3R85Kw; path=/; expires=Fri, 31-Jan-25 14:05:18 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=uVB5cLqqaLcsYww.bJ5h2minyb5kXrlV9M7pEGm4PfY-1738330518928-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa155af8187c9f-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:18.987 | openai._base_client | _request:
+request_id: req_65ce065539e55297630205c54a65d5cb
+
+2025-01-31,08:35:19.206 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:19.207 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:19.207 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:19.232 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB94A10>
+
+2025-01-31,08:35:19.232 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD09084F50> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:19.260 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB94770>
+
+2025-01-31,08:35:19.260 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:19.260 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:19.260 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:19.260 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:19.261 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:20.240 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'818'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'199708'), (b'x-ratelimit-reset-requests', b'32.666s'), (b'x-ratelimit-reset-tokens', b'87ms'), (b'x-request-id', b'req_b34a48751e4c2bee9d5b5363ee592e9a'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=BEpo2nClwpoWNqZgIW3rRNKSj8JbINVbvq6scB0Oh94-1738330520-1.0.1.1-SSgeZmboRPeWCmqDDt89Ly2WXzZlutkqIIw1gI3OXQrVlu7Tj6bwmIqPVduhMo313OPfrEYuWASJjC.a__Meug; path=/; expires=Fri, 31-Jan-25 14:05:20 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=JAXLDXtKThZEed0xXVKOkYNDT.qneaGUNDov0ApJpFQ-1738330520187-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15913d7a8c8a-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:20.241 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:20.241 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:20.243 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:20.243 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:20.243 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:20.244 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:20 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '818'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9996'), ('x-ratelimit-remaining-tokens', '199708'), ('x-ratelimit-reset-requests', '32.666s'), ('x-ratelimit-reset-tokens', '87ms'), ('x-request-id', 'req_b34a48751e4c2bee9d5b5363ee592e9a'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=BEpo2nClwpoWNqZgIW3rRNKSj8JbINVbvq6scB0Oh94-1738330520-1.0.1.1-SSgeZmboRPeWCmqDDt89Ly2WXzZlutkqIIw1gI3OXQrVlu7Tj6bwmIqPVduhMo313OPfrEYuWASJjC.a__Meug; path=/; expires=Fri, 31-Jan-25 14:05:20 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=JAXLDXtKThZEed0xXVKOkYNDT.qneaGUNDov0ApJpFQ-1738330520187-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15913d7a8c8a-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:20.244 | openai._base_client | _request:
+request_id: req_b34a48751e4c2bee9d5b5363ee592e9a
+
+2025-01-31,08:35:20.469 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:20.470 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:20.470 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:20.509 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB97A40>
+
+2025-01-31,08:35:20.509 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0BB89AD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:20.532 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB945F0>
+
+2025-01-31,08:35:20.532 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:20.533 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:20.533 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:20.533 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:20.533 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:23.764 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:23 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'3078'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9995'), (b'x-ratelimit-remaining-tokens', b'199095'), (b'x-ratelimit-reset-requests', b'40.05s'), (b'x-ratelimit-reset-tokens', b'271ms'), (b'x-request-id', b'req_a2dcd3b3678e8eeb96afefd3fad3ec52'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=4t9vz_5PV9INZI1n9.jwPWpob2d87RJbiTlKSv2x8Uc-1738330523-1.0.1.1-mO4sU68G51FuZb7MYzyzv1WgXVII0QaPXM_RGAl6uJVMmycdtOElFXhEQkD1V1J2lj6V29__Lq9tR3Rk02N2WQ; path=/; expires=Fri, 31-Jan-25 14:05:23 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=TioA8UvDghP5Ghq6UkABcqXNRxRx9.8iC4jb0xGfxro-1738330523710-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15992a5618cc-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:23.765 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:23.765 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:23.765 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:23.766 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:23.766 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:23.766 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:23 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '3078'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9995'), ('x-ratelimit-remaining-tokens', '199095'), ('x-ratelimit-reset-requests', '40.05s'), ('x-ratelimit-reset-tokens', '271ms'), ('x-request-id', 'req_a2dcd3b3678e8eeb96afefd3fad3ec52'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=4t9vz_5PV9INZI1n9.jwPWpob2d87RJbiTlKSv2x8Uc-1738330523-1.0.1.1-mO4sU68G51FuZb7MYzyzv1WgXVII0QaPXM_RGAl6uJVMmycdtOElFXhEQkD1V1J2lj6V29__Lq9tR3Rk02N2WQ; path=/; expires=Fri, 31-Jan-25 14:05:23 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=TioA8UvDghP5Ghq6UkABcqXNRxRx9.8iC4jb0xGfxro-1738330523710-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15992a5618cc-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:23.766 | openai._base_client | _request:
+request_id: req_a2dcd3b3678e8eeb96afefd3fad3ec52
+
+2025-01-31,08:35:23.988 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:23.988 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:23.988 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:24.031 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BBA5A00>
+
+2025-01-31,08:35:24.031 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0BB8ACD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:24.055 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BB95220>
+
+2025-01-31,08:35:24.055 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:24.055 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:24.055 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:24.055 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:24.056 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:25.203 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:25 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'993'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'199708'), (b'x-ratelimit-reset-requests', b'45.178s'), (b'x-ratelimit-reset-tokens', b'87ms'), (b'x-request-id', b'req_ef719007320d5a4d79713a8ce852934e'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=URgZRo8LawvrZzuMIIxplLEEDPrIEx9FUeO1z8VdrhY-1738330525-1.0.1.1-RA4lBzB2kwmHX3DZW5f.4MNHLsBEl5THpeGjDSQOSVbGOGgUnQM_5mOJhLiuAWkNPXMaC6C9k8pbdQeGAzFr4w; path=/; expires=Fri, 31-Jan-25 14:05:25 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=gkdFUOO912p3gAfDieJcfyt8yM3OoDK1nDZIrY7yKLs-1738330525151-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15af299d428e-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:25.203 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:25.203 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:25.204 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:25.204 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:25.204 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:25.204 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:25 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '993'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9994'), ('x-ratelimit-remaining-tokens', '199708'), ('x-ratelimit-reset-requests', '45.178s'), ('x-ratelimit-reset-tokens', '87ms'), ('x-request-id', 'req_ef719007320d5a4d79713a8ce852934e'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=URgZRo8LawvrZzuMIIxplLEEDPrIEx9FUeO1z8VdrhY-1738330525-1.0.1.1-RA4lBzB2kwmHX3DZW5f.4MNHLsBEl5THpeGjDSQOSVbGOGgUnQM_5mOJhLiuAWkNPXMaC6C9k8pbdQeGAzFr4w; path=/; expires=Fri, 31-Jan-25 14:05:25 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=gkdFUOO912p3gAfDieJcfyt8yM3OoDK1nDZIrY7yKLs-1738330525151-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15af299d428e-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:25.204 | openai._base_client | _request:
+request_id: req_ef719007320d5a4d79713a8ce852934e
+
+2025-01-31,08:35:25.434 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:25.435 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:25.435 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:25.456 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BBBEB70>
+
+2025-01-31,08:35:25.456 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0BB8B5D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:25.482 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0BBBEA50>
+
+2025-01-31,08:35:25.482 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:25.483 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:25.483 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:25.483 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:25.483 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:28.753 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:28 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'3108'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'199095'), (b'x-ratelimit-reset-requests', b'52.385s'), (b'x-ratelimit-reset-tokens', b'271ms'), (b'x-request-id', b'req_5b5787aa82f8aea4c4ab641809f0a8ac'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=sNqRAxcxBleLuyUTKkWtQISPa0CvHXmRA.DUe32AiX4-1738330528-1.0.1.1-I1YQ5XTC.mK0m2f.BhCPfaFJ.kxdsRZck42yIweOwHgaQCMoiB77UoOg3EpWwR18g_KiJwLu0fkG1fTI1OGzvQ; path=/; expires=Fri, 31-Jan-25 14:05:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=_C2BIQMeGRl28M12sM.4nrnPhpMgz69rfR4pRJ6rX_Y-1738330528698-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15b819a578e8-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:28.753 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:28.753 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:28.765 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:28.765 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:28.765 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:28.766 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:28 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '3108'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9993'), ('x-ratelimit-remaining-tokens', '199095'), ('x-ratelimit-reset-requests', '52.385s'), ('x-ratelimit-reset-tokens', '271ms'), ('x-request-id', 'req_5b5787aa82f8aea4c4ab641809f0a8ac'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=sNqRAxcxBleLuyUTKkWtQISPa0CvHXmRA.DUe32AiX4-1738330528-1.0.1.1-I1YQ5XTC.mK0m2f.BhCPfaFJ.kxdsRZck42yIweOwHgaQCMoiB77UoOg3EpWwR18g_KiJwLu0fkG1fTI1OGzvQ; path=/; expires=Fri, 31-Jan-25 14:05:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=_C2BIQMeGRl28M12sM.4nrnPhpMgz69rfR4pRJ6rX_Y-1738330528698-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15b819a578e8-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:28.766 | openai._base_client | _request:
+request_id: req_5b5787aa82f8aea4c4ab641809f0a8ac
+
+2025-01-31,08:35:28.992 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are a underwriter for corporate, commercial and securitization loans. Generate graph reasoning for given attribute to extract the value. You are given attribute Interest Rate Spread for which to extract from credit agreement you need to extract value based on For floating rate credit facilities, list spread over base rate in basis points. If the credit facility is fixed  populate â€˜NAâ€™. If the facility includes multiple draws with different spreads, provide the spread that approximates the overall spread on the facility.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,08:35:28.993 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,08:35:28.993 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,08:35:29.015 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0CBA1BE0>
+
+2025-01-31,08:35:29.015 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000001FD0BBAAAD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,08:35:29.043 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001FD0CBA1AC0>
+
+2025-01-31,08:35:29.043 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:29.044 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,08:35:29.044 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:29.044 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,08:35:29.044 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,08:35:29.611 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 13:35:29 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'403'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'199708'), (b'x-ratelimit-reset-requests', b'57.445s'), (b'x-ratelimit-reset-tokens', b'87ms'), (b'x-request-id', b'req_ca4f4acf447b7863d33b691316aa4f74'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=.2H8v074Npey3J0qybY6aDzmEAvpjYlb6TmMlWWnw2Q-1738330529-1.0.1.1-yB3jjOas8Gbuw1mMbis0Z_jnw26eX8eET2y0UnB4iewqyXYwbVJugQFv6weHUDdMblOqHN3DG.mlyMdTa2_Bog; path=/; expires=Fri, 31-Jan-25 14:05:29 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=IJUyZnyerlDNpyzArqZb4O28ob1C2uF4H2WKyQMK6TA-1738330529558-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90aa15ce5f9f4263-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:29.612 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,08:35:29.612 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,08:35:29.612 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,08:35:29.613 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,08:35:29.613 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,08:35:29.613 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 13:35:29 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '403'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9993'), ('x-ratelimit-remaining-tokens', '199708'), ('x-ratelimit-reset-requests', '57.445s'), ('x-ratelimit-reset-tokens', '87ms'), ('x-request-id', 'req_ca4f4acf447b7863d33b691316aa4f74'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=.2H8v074Npey3J0qybY6aDzmEAvpjYlb6TmMlWWnw2Q-1738330529-1.0.1.1-yB3jjOas8Gbuw1mMbis0Z_jnw26eX8eET2y0UnB4iewqyXYwbVJugQFv6weHUDdMblOqHN3DG.mlyMdTa2_Bog; path=/; expires=Fri, 31-Jan-25 14:05:29 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=IJUyZnyerlDNpyzArqZb4O28ob1C2uF4H2WKyQMK6TA-1738330529558-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90aa15ce5f9f4263-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,08:35:29.613 | openai._base_client | _request:
+request_id: req_ca4f4acf447b7863d33b691316aa4f74
+
+2025-01-31,08:35:29.615 | promptwizard.glue.promptopt.instantiate | get_best_prompt:
+Time taken to find best prompt: 33.560789585113525 sec
+
+2025-01-31,08:35:29.669 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.670 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.started
+
+2025-01-31,08:35:29.672 | httpcore.connection | trace:
+close.complete
+
