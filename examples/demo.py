@@ -2,7 +2,7 @@ import sys
 
 sys.path.insert(0, "../../")
 
-from promptwizard.glue.promptopt.instantiate import GluePromptOpt
+from src.promptopt import PromptOptimizer
 import os
 
 from dotenv import load_dotenv
@@ -13,11 +13,11 @@ if not os.path.exists("data"):
     os.mkdir("data")
 
 path_to_config = "configs"
-promptopt_config_path = os.path.join(path_to_config, "promptopt_config.yaml")
+prompt_opt_config_path = os.path.join(path_to_config, "promptopt_config.yaml")
 setup_config_path = os.path.join(path_to_config, "setup_config.yaml")
 
 
-gp = GluePromptOpt(promptopt_config_path,
+gp = PromptOptimizer(prompt_opt_config_path,
                    setup_config_path,
                    dataset_jsonl=None,
                    data_processor=None)

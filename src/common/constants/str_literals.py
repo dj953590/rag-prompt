@@ -6,8 +6,8 @@ from dataclasses import dataclass
 
 @dataclass
 class FileConstants:
-    logfile_name = "glue_logs.log"
-    logfile_prefix = "glue_logs_"
+    logfile_name = "pt_opt.log"
+    logfile_prefix = "pt_opt_"
 
 
 @dataclass

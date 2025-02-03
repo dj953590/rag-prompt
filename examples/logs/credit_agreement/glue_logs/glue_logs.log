@@ -737,3 +737,746 @@ close.started
 2025-01-31,08:35:29.672 | httpcore.connection | trace:
 close.complete
 
+2025-01-31,14:47:15.006 | promptwizard.glue.promptopt.instantiate | __init__:
+Setup configurations parameters: [('assistant_llm', AssistantLLM(prompt_opt='gpt-4o')), ('description', None), ('dir_info', Dir(base_dir='logs', log_dir_name='glue_logs')), ('experiment_name', 'credit_agreement'), ('mode', 'offline')] 
+
+======================================================================================================================================================
+
+
+2025-01-31,14:47:15.007 | promptwizard.glue.promptopt.instantiate | __init__:
+Prompt Optimization parameters: [('answer_format', 'For each question present the reasoning followed by the correct answer.'), ('base_instruction', 'Lets think step by step and generate graphical reasoning to come to response.'), ('few_shot_count', 0), ('generate_expert_identity', True), ('generate_intent_keywords', True), ('generate_reasoning', True), ('max_eval_batches', 6), ('min_correct_count', 3), ('mutate_refine_iterations', 3), ('mutation_rounds', 3), ('num_train_examples', 0), ('prompt_technique_name', 'critique_n_refine'), ('questions_batch_size', 1), ('refine_instruction', True), ('refine_task_eg_iterations', 3), ('seen_set_size', 0), ('style_variation', 5), ('task_description', 'You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.'), ('top_n', 1), ('unique_model_id', 'gpt-4o-mini')] 
+
+======================================================================================================================================================
+
+
+2025-01-31,14:47:15.012 | promptwizard.glue.promptopt.instantiate | get_best_prompt:
+
+======================================================================================================================================================
+ + Starting iteration: 1 
+ current_base_instruction: Lets think step by step and generate graphical reasoning to come to response.
+
+2025-01-31,14:47:20.134 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:20.134 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:20.135 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:20.215 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7C39130>
+
+2025-01-31,14:47:20.215 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA7C194D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:20.238 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA79267B0>
+
+2025-01-31,14:47:20.238 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:20.238 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:20.239 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:20.239 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:20.239 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:25.028 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:24 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'4631'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199546'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'136ms'), (b'x-request-id', b'req_1b4c0580ce719f3f00171d8d74ff8675'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=.exJux4XrVEOhX.PLR6CAle9.b4yVGiNygEUjL4cP3Y-1738352844-1.0.1.1-ppeD8jDB.5rM.hyWtzbDMbYF6TrK_jDnDAqdUAG_WJUHLNFbCOr59HpwL.FIJ7bNnjsqhCqmomRRe0d7WJIBMw; path=/; expires=Fri, 31-Jan-25 20:17:24 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=DspknBohfb0MXjRjRhKzWfwxRnBgZ3.Vz388UKXCNms-1738352844640-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac3681386ec35d-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:25.031 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:25.031 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:25.032 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:25.032 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:25.032 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:25.032 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:24 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '4631'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199546'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '136ms'), ('x-request-id', 'req_1b4c0580ce719f3f00171d8d74ff8675'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=.exJux4XrVEOhX.PLR6CAle9.b4yVGiNygEUjL4cP3Y-1738352844-1.0.1.1-ppeD8jDB.5rM.hyWtzbDMbYF6TrK_jDnDAqdUAG_WJUHLNFbCOr59HpwL.FIJ7bNnjsqhCqmomRRe0d7WJIBMw; path=/; expires=Fri, 31-Jan-25 20:17:24 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=DspknBohfb0MXjRjRhKzWfwxRnBgZ3.Vz388UKXCNms-1738352844640-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac3681386ec35d-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:25.032 | openai._base_client | _request:
+request_id: req_1b4c0580ce719f3f00171d8d74ff8675
+
+2025-01-31,14:47:25.066 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=0 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. 
+3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START>Let's break down the problem step by step and visualize the reasoning process to arrive at the solution.<END>
+
+<START>We should analyze the situation methodically and create a graphical representation of our reasoning to reach a conclusion.<END>
+
+<START>Let's approach this systematically and develop a visual reasoning framework to guide us to the answer.<END>
+
+<START>We need to think through this in a structured manner and illustrate our reasoning graphically to derive the response.<END>
+
+<START>Let's tackle this problem step by step and use graphical reasoning to help clarify our thought process and find the answer.<END>
+
+2025-01-31,14:47:25.301 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:25.302 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:25.302 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:25.370 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA50F4620>
+
+2025-01-31,14:47:25.370 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA75CA6D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:25.417 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA50F41D0>
+
+2025-01-31,14:47:25.417 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:25.418 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:25.418 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:25.418 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:25.418 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:29.328 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:28 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'3752'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199546'), (b'x-ratelimit-reset-requests', b'12.098s'), (b'x-ratelimit-reset-tokens', b'136ms'), (b'x-request-id', b'req_f6688f55d8bf8222c3f236ae580f9549'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=LLe9Hqj99el_DvC_gxEGP2VmnaAcaIK.53KxhCXYFVA-1738352848-1.0.1.1-LKfpOFqY4kBBa.0bXRDKIodcjyMw8HE.IW1jyYVC0SHF7w2YgXuswCis6k0xi9y1LHTe28bn2sR5x6.KojT6mw; path=/; expires=Fri, 31-Jan-25 20:17:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=tb8mIq4z5QQrDc1sG_OxwMCbPJxgyihHlS30gof38f8-1738352848934-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac36a19bf96a5e-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:29.328 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:29.329 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:29.329 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:29.329 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:29.330 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:29.330 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:28 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '3752'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9998'), ('x-ratelimit-remaining-tokens', '199546'), ('x-ratelimit-reset-requests', '12.098s'), ('x-ratelimit-reset-tokens', '136ms'), ('x-request-id', 'req_f6688f55d8bf8222c3f236ae580f9549'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=LLe9Hqj99el_DvC_gxEGP2VmnaAcaIK.53KxhCXYFVA-1738352848-1.0.1.1-LKfpOFqY4kBBa.0bXRDKIodcjyMw8HE.IW1jyYVC0SHF7w2YgXuswCis6k0xi9y1LHTe28bn2sR5x6.KojT6mw; path=/; expires=Fri, 31-Jan-25 20:17:28 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=tb8mIq4z5QQrDc1sG_OxwMCbPJxgyihHlS30gof38f8-1738352848934-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac36a19bf96a5e-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:29.330 | openai._base_client | _request:
+request_id: req_f6688f55d8bf8222c3f236ae580f9549
+
+2025-01-31,14:47:29.333 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=1 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. 
+3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START>Let's break down the problem step by step and visualize the reasoning process to arrive at the answer.<END>
+
+<START>We should analyze the situation methodically and create a graphical representation of our reasoning to reach a conclusion.<END>
+
+<START>Let's approach this systematically and develop a visual reasoning framework to guide us to the solution.<END>
+
+<START>We can tackle this issue in a structured manner and illustrate our thought process graphically to derive the response.<END>
+
+<START>Let's think through this in a sequential way and use graphical reasoning to help us formulate the answer.<END>
+
+2025-01-31,14:47:29.567 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:29.567 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:29.568 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:29.606 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA50F7770>
+
+2025-01-31,14:47:29.606 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA75CADD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:29.631 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA50F7470>
+
+2025-01-31,14:47:29.631 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:29.632 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:29.632 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:29.632 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:29.633 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:33.882 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:33 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'4067'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199546'), (b'x-ratelimit-reset-requests', b'16.525s'), (b'x-ratelimit-reset-tokens', b'136ms'), (b'x-request-id', b'req_3eae6c66d45210b54ab3cc5fd3160705'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=aBWBcM2_bKeoJLS.w74_201ucDEPSjgGxUAjdIGo9m4-1738352853-1.0.1.1-M4_8H7QPyFXtm6TJIWrlrut3VJas5bimtK142FKmPDiYM8plXVSsDlD6HSag_z8B7z8zpdEZsPzNHVxsXoLN3Q; path=/; expires=Fri, 31-Jan-25 20:17:33 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=M1zJ6EsiSG32v.0vtIMNo04hQw8BWtiNTMaXQ9fll6g-1738352853494-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac36bbeeff436d-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:33.883 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:33.883 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:33.887 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:33.887 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:33.887 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:33.887 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:33 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '4067'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9998'), ('x-ratelimit-remaining-tokens', '199546'), ('x-ratelimit-reset-requests', '16.525s'), ('x-ratelimit-reset-tokens', '136ms'), ('x-request-id', 'req_3eae6c66d45210b54ab3cc5fd3160705'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=aBWBcM2_bKeoJLS.w74_201ucDEPSjgGxUAjdIGo9m4-1738352853-1.0.1.1-M4_8H7QPyFXtm6TJIWrlrut3VJas5bimtK142FKmPDiYM8plXVSsDlD6HSag_z8B7z8zpdEZsPzNHVxsXoLN3Q; path=/; expires=Fri, 31-Jan-25 20:17:33 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=M1zJ6EsiSG32v.0vtIMNo04hQw8BWtiNTMaXQ9fll6g-1738352853494-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac36bbeeff436d-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:33.888 | openai._base_client | _request:
+request_id: req_3eae6c66d45210b54ab3cc5fd3160705
+
+2025-01-31,14:47:33.889 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=2 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. 
+3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START>Let's break down the problem step by step and visualize the reasoning process to arrive at the solution.<END>
+
+<START>We should analyze the situation methodically and create a graphical representation of our reasoning to reach a conclusion.<END>
+
+<START>Let's approach this systematically, using visual aids to illustrate our thought process as we work towards the answer.<END>
+
+<START>We can tackle this issue in a structured manner, employing graphical reasoning to guide us to the final response.<END>
+
+<START>Let's think through this problem in a detailed way and use diagrams to help clarify our reasoning as we find the solution.<END>
+
+2025-01-31,14:47:34.126 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given a task description and a prompt instruction and different styles known as meta prompts:\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Meta Prompt]: How could I devise an experiment to help solve that problem?\nMake a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.\nHow could I measure progress on this problem?\nHow can I simplify the problem so that it is easier to solve?\nWhat are the key assumptions underlying this problem?\nNow you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.\nMake sure to wrap each generated prompt with <START> and <END>\n[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n[Generated Prompts]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:34.127 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:34.127 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:34.152 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA72A6840>
+
+2025-01-31,14:47:34.152 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA75CB650> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:34.177 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA72A65A0>
+
+2025-01-31,14:47:34.178 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:34.178 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:34.178 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:34.179 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:34.179 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:38.523 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:38 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'4169'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199546'), (b'x-ratelimit-reset-requests', b'20.619s'), (b'x-ratelimit-reset-tokens', b'136ms'), (b'x-request-id', b'req_d1a4dfc3b86d76589cf886aa0493589a'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=Y4nUi5MGoV6T3QqQZ0HIb50ZN20OHWvHeXvx85MmLvI-1738352858-1.0.1.1-XNg.AmlEsE0D41xe9DDG7Xos_CLo07qEsjGWCj.IaRT1v76nKCksP9yNC4a3sgiS1EigKDkBnQhCUDTCi22bzA; path=/; expires=Fri, 31-Jan-25 20:17:38 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=bSifIMxjYF9IUNYR6nlHJrftcd2ieseR.17_urCOF_A-1738352858134-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac36d85d82ef9f-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:38.524 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:38.524 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:38.526 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:38.527 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:38.527 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:38.527 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:38 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '4169'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9997'), ('x-ratelimit-remaining-tokens', '199546'), ('x-ratelimit-reset-requests', '20.619s'), ('x-ratelimit-reset-tokens', '136ms'), ('x-request-id', 'req_d1a4dfc3b86d76589cf886aa0493589a'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=Y4nUi5MGoV6T3QqQZ0HIb50ZN20OHWvHeXvx85MmLvI-1738352858-1.0.1.1-XNg.AmlEsE0D41xe9DDG7Xos_CLo07qEsjGWCj.IaRT1v76nKCksP9yNC4a3sgiS1EigKDkBnQhCUDTCi22bzA; path=/; expires=Fri, 31-Jan-25 20:17:38 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=bSifIMxjYF9IUNYR6nlHJrftcd2ieseR.17_urCOF_A-1738352858134-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac36d85d82ef9f-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:38.527 | openai._base_client | _request:
+request_id: req_d1a4dfc3b86d76589cf886aa0493589a
+
+2025-01-31,14:47:38.529 | promptwizard.glue.promptopt.instantiate | gen_different_styles:
+mutation_round=3 mutated_sample_prompt=You are given a task description and a prompt instruction and different styles known as meta prompts:
+[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. 
+3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.
+[Meta Prompt]: How could I devise an experiment to help solve that problem?
+Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.
+How could I measure progress on this problem?
+How can I simplify the problem so that it is easier to solve?
+What are the key assumptions underlying this problem?
+Now you need to generate 5 variations of following Instruction adaptively mixing meta prompt while keeping similar semantic meaning.
+Make sure to wrap each generated prompt with <START> and <END>
+[Prompt Instruction]: Lets think step by step and generate graphical reasoning to come to response.
+[Generated Prompts]:
+mutated_prompt_generation=<START>Let's break down the problem step by step and visualize the reasoning process to arrive at the solution.<END>
+
+<START>We should analyze the situation methodically and create a graphical representation of our reasoning to reach a conclusion.<END>
+
+<START>Let's approach this systematically, using visual aids to illustrate our thought process as we work towards the answer.<END>
+
+<START>We can tackle this issue in a structured manner, employing graphical reasoning to guide us to the final response.<END>
+
+<START>Let's think through this problem in a detailed way and use graphical reasoning to help clarify our path to the solution.<END>
+
+2025-01-31,14:47:38.757 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:38.758 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:38.758 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:38.798 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7C8D970>
+
+2025-01-31,14:47:38.799 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA6FF83D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:38.820 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7C8D6D0>
+
+2025-01-31,14:47:38.820 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:38.820 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:38.821 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:38.821 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:38.821 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:41.437 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:41 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2436'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9997'), (b'x-ratelimit-remaining-tokens', b'199021'), (b'x-ratelimit-reset-requests', b'24.617s'), (b'x-ratelimit-reset-tokens', b'293ms'), (b'x-request-id', b'req_76263d04e2801be136935327c81bfe90'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=B9XDB3NAGbMp.I5u9Z8KqXbzqKO7Ljb5Bi1DrKZbvj4-1738352861-1.0.1.1-UxyNem0PThok02_ncwHUQ6CG.4cVCPHbUYrDNJMalLZDfKvUauAZLKyoeHBdUmWFg7Co.dLvBY6EygC7EzJtDw; path=/; expires=Fri, 31-Jan-25 20:17:41 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=3MxoI3XG72RKZjVxUXywdWYDpg45gmkmy9buTrLXbEs-1738352861042-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac36f56b758c72-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:41.437 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:41.438 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:41.439 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:41.439 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:41.439 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:41.440 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:41 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2436'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9997'), ('x-ratelimit-remaining-tokens', '199021'), ('x-ratelimit-reset-requests', '24.617s'), ('x-ratelimit-reset-tokens', '293ms'), ('x-request-id', 'req_76263d04e2801be136935327c81bfe90'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=B9XDB3NAGbMp.I5u9Z8KqXbzqKO7Ljb5Bi1DrKZbvj4-1738352861-1.0.1.1-UxyNem0PThok02_ncwHUQ6CG.4cVCPHbUYrDNJMalLZDfKvUauAZLKyoeHBdUmWFg7Co.dLvBY6EygC7EzJtDw; path=/; expires=Fri, 31-Jan-25 20:17:41 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=3MxoI3XG72RKZjVxUXywdWYDpg45gmkmy9buTrLXbEs-1738352861042-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac36f56b758c72-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:41.440 | openai._base_client | _request:
+request_id: req_76263d04e2801be136935327c81bfe90
+
+2025-01-31,14:47:41.665 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:41.666 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:41.666 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:41.718 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA0A10>
+
+2025-01-31,14:47:41.718 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA6E990D0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:41.745 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA0770>
+
+2025-01-31,14:47:41.745 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:41.746 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:41.746 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:41.746 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:41.746 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:42.855 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:42 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'943'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9996'), (b'x-ratelimit-remaining-tokens', b'199633'), (b'x-ratelimit-reset-requests', b'30.322s'), (b'x-ratelimit-reset-tokens', b'109ms'), (b'x-request-id', b'req_4a7238fe6a391bbc11d92e9bbeae69a0'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=hhjZ5sxcSak9eIksukW5cxwWFNPs2IXOaSxfslXDs2E-1738352862-1.0.1.1-4eNZVZoScK_bh3YPbsgwbC03iTfUPX2Hd7IUO13HndXTMHFxbZLNZvU3a9I66fARSMpjspAPmZoR0lw0cMzEBw; path=/; expires=Fri, 31-Jan-25 20:17:42 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=58Jh3JyOFbnBgRK38oxm6N0kLRcnzeWJIKdBr5HkZIA-1738352862467-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac3707aef4440c-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:42.856 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:42.856 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:42.856 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:42.857 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:42.857 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:42.857 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:42 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '943'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9996'), ('x-ratelimit-remaining-tokens', '199633'), ('x-ratelimit-reset-requests', '30.322s'), ('x-ratelimit-reset-tokens', '109ms'), ('x-request-id', 'req_4a7238fe6a391bbc11d92e9bbeae69a0'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=hhjZ5sxcSak9eIksukW5cxwWFNPs2IXOaSxfslXDs2E-1738352862-1.0.1.1-4eNZVZoScK_bh3YPbsgwbC03iTfUPX2Hd7IUO13HndXTMHFxbZLNZvU3a9I66fARSMpjspAPmZoR0lw0cMzEBw; path=/; expires=Fri, 31-Jan-25 20:17:42 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=58Jh3JyOFbnBgRK38oxm6N0kLRcnzeWJIKdBr5HkZIA-1738352862467-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac3707aef4440c-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:42.857 | openai._base_client | _request:
+request_id: req_4a7238fe6a391bbc11d92e9bbeae69a0
+
+2025-01-31,14:47:43.104 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:43.106 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:43.106 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:43.199 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA0080>
+
+2025-01-31,14:47:43.200 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA7C94050> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:43.223 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA0890>
+
+2025-01-31,14:47:43.223 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:43.223 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:43.224 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:43.224 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:43.224 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:45.795 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:45 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2419'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9995'), (b'x-ratelimit-remaining-tokens', b'199021'), (b'x-ratelimit-reset-requests', b'37.495s'), (b'x-ratelimit-reset-tokens', b'293ms'), (b'x-request-id', b'req_b2d1c8d7b91ca36aa5abb4a72c86d2e8'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=KztMD3Minddh3JugQG3iYXUc8D0HUQMqIRdIdAfk36Q-1738352865-1.0.1.1-bUAbtvQPSSEy039IyPaG4.414rCwIv4nxCR0Ysyp6GlfsQH6I.dWxKpYxuN8RllRMYprUR4vfgvZvPkM2V3rDQ; path=/; expires=Fri, 31-Jan-25 20:17:45 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=2sn2JZyh8j5V2whsF0Nh48jsnF1jZWYX3tHXyg0xPho-1738352865406-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac3710eb4ac326-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:45.796 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:45.796 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:45.797 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:45.797 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:45.797 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:45.797 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:45 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2419'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9995'), ('x-ratelimit-remaining-tokens', '199021'), ('x-ratelimit-reset-requests', '37.495s'), ('x-ratelimit-reset-tokens', '293ms'), ('x-request-id', 'req_b2d1c8d7b91ca36aa5abb4a72c86d2e8'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=KztMD3Minddh3JugQG3iYXUc8D0HUQMqIRdIdAfk36Q-1738352865-1.0.1.1-bUAbtvQPSSEy039IyPaG4.414rCwIv4nxCR0Ysyp6GlfsQH6I.dWxKpYxuN8RllRMYprUR4vfgvZvPkM2V3rDQ; path=/; expires=Fri, 31-Jan-25 20:17:45 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=2sn2JZyh8j5V2whsF0Nh48jsnF1jZWYX3tHXyg0xPho-1738352865406-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac3710eb4ac326-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:45.797 | openai._base_client | _request:
+request_id: req_b2d1c8d7b91ca36aa5abb4a72c86d2e8
+
+2025-01-31,14:47:46.069 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:46.070 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:46.070 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:46.095 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA04A0>
+
+2025-01-31,14:47:46.096 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA7C96CD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:46.126 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CA3E60>
+
+2025-01-31,14:47:46.126 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:46.127 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:46.127 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:46.127 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:46.127 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:47.635 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'1345'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'199633'), (b'x-ratelimit-reset-requests', b'43.24s'), (b'x-ratelimit-reset-tokens', b'109ms'), (b'x-request-id', b'req_8712be5f4bdfe4ce6cf49161d7919ad8'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=zJBw9Jedr25.JnGNaPvVlxDtLZ98EXWKruK5FXyhm0Y-1738352867-1.0.1.1-csFs1VdFumyhKbvSezD52DjL6y4nx22E6fqfG3DKO.I27UyaKcnWxkwIOKc8MIMMBbvIXs20T9r8A5PkY7I8Gg; path=/; expires=Fri, 31-Jan-25 20:17:47 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=cpVbEeOkmbHtzXCSnq8AzBuhoSRshPozMc5d7mHViwc-1738352867248-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac37230b2d433a-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:47.636 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:47.637 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:47.655 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:47.655 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:47.655 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:47.656 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:47 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '1345'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9994'), ('x-ratelimit-remaining-tokens', '199633'), ('x-ratelimit-reset-requests', '43.24s'), ('x-ratelimit-reset-tokens', '109ms'), ('x-request-id', 'req_8712be5f4bdfe4ce6cf49161d7919ad8'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=zJBw9Jedr25.JnGNaPvVlxDtLZ98EXWKruK5FXyhm0Y-1738352867-1.0.1.1-csFs1VdFumyhKbvSezD52DjL6y4nx22E6fqfG3DKO.I27UyaKcnWxkwIOKc8MIMMBbvIXs20T9r8A5PkY7I8Gg; path=/; expires=Fri, 31-Jan-25 20:17:47 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=cpVbEeOkmbHtzXCSnq8AzBuhoSRshPozMc5d7mHViwc-1738352867248-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac37230b2d433a-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:47.656 | openai._base_client | _request:
+request_id: req_8712be5f4bdfe4ce6cf49161d7919ad8
+
+2025-01-31,14:47:47.881 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.\\n\n\n[Instruction]: Make a list of 5 possible effects of deforestation.\\n\n[Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.\n\n\n[Instruction]: Identify a descriptive phrase for an eclipse.\\n\n[Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.\n\n\n\n[Instruction]: Identify the parts of speech in this sentence: \\"The dog barked at the postman\\".\\n\n[Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.\n\n\n[Instruction]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Agent Description]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:47.882 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:47.882 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:47.912 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CC6B40>
+
+2025-01-31,14:47:47.912 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA7C97950> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:47.943 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA7CC6A20>
+
+2025-01-31,14:47:47.943 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:47.943 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:47.944 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:47.944 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:47.944 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:50.779 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:50 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'2649'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9994'), (b'x-ratelimit-remaining-tokens', b'199021'), (b'x-ratelimit-reset-requests', b'50.053s'), (b'x-ratelimit-reset-tokens', b'293ms'), (b'x-request-id', b'req_fba71eddc1349e3b40933c822d25df53'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=SvF.ncL.RrRX_quOO6_f0497JLpZ2qit3kj3abcstc4-1738352870-1.0.1.1-lT5RTygGBkH1NS6uWMKqANq7J5tmV5rAMtRw3SJiMpFpVM8IIbCSG7Drt7vgt3viHZ6922nwqze.s905ntqWsQ; path=/; expires=Fri, 31-Jan-25 20:17:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=K.blaZiCWt4mtYT8cCtLpWhmpkRsusRq3hXe..Uo.hQ-1738352870391-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac372e6c764213-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:50.779 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:50.780 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:50.797 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:50.797 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:50.797 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:50.798 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:50 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '2649'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9994'), ('x-ratelimit-remaining-tokens', '199021'), ('x-ratelimit-reset-requests', '50.053s'), ('x-ratelimit-reset-tokens', '293ms'), ('x-request-id', 'req_fba71eddc1349e3b40933c822d25df53'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=SvF.ncL.RrRX_quOO6_f0497JLpZ2qit3kj3abcstc4-1738352870-1.0.1.1-lT5RTygGBkH1NS6uWMKqANq7J5tmV5rAMtRw3SJiMpFpVM8IIbCSG7Drt7vgt3viHZ6922nwqze.s905ntqWsQ; path=/; expires=Fri, 31-Jan-25 20:17:50 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=K.blaZiCWt4mtYT8cCtLpWhmpkRsusRq3hXe..Uo.hQ-1738352870391-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac372e6c764213-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:50.798 | openai._base_client | _request:
+request_id: req_fba71eddc1349e3b40933c822d25df53
+
+2025-01-31,14:47:51.027 | openai._base_client | _build_request:
+Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful assistant developed by OpenAI that can efficiently perform tasks as per instruction'}, {'role': 'user', 'content': 'You are given an instruction along description of task labelled as [Task Description]. For the given instruction, list out 3-5 keywords in comma separated format as [Intent] which define the characteristics or properties required by the about the most capable and suitable agent to solve the task using the instruction.\n\n\n[Task Description]: You are an Expert Commercial Credit Officer. Plan, strategize, and think step by step. Interest rate floor may be derived from Benchmark Rates that may be Minimum Interest Rate, Base Rate, Term SOFR, Advance Rate, Applicable Rate etc. Interest Rate Floor means the value or percentage that the Benchmark Rate or specific rate cannot fall below which is usually zero. Determine the percentage value of the floor and return that value. \n3. Do not return this example as an answer. If the value is not mentioned in the provided text, return None. If the value of the floor is expressed as bps, divide it by 10000 but if it is in percentage divide by 100 otherwise retain its value. For example if Term SOFR shall be less than zero, such rate shall be deemed 0.25% will return 0.0025. Provide the rationale for your answer. Recheck your answer.\n[Instruction]: Lets think step by step and generate graphical reasoning to come to response.\n\n\n[Intent]:\n'}], 'model': 'gpt-4o-mini', 'temperature': 0.0}}
+
+2025-01-31,14:47:51.027 | openai._base_client | _request:
+Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+
+2025-01-31,14:47:51.028 | httpcore.connection | trace:
+connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+
+2025-01-31,14:47:51.047 | httpcore.connection | trace:
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA8CADC70>
+
+2025-01-31,14:47:51.047 | httpcore.connection | trace:
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002AEA7CB6AD0> server_hostname='api.openai.com' timeout=5.0
+
+2025-01-31,14:47:51.076 | httpcore.connection | trace:
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002AEA8CADB50>
+
+2025-01-31,14:47:51.076 | httpcore.http11 | trace:
+send_request_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:51.076 | httpcore.http11 | trace:
+send_request_headers.complete
+
+2025-01-31,14:47:51.076 | httpcore.http11 | trace:
+send_request_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:51.076 | httpcore.http11 | trace:
+send_request_body.complete
+
+2025-01-31,14:47:51.076 | httpcore.http11 | trace:
+receive_response_headers.started request=<Request [b'POST']>
+
+2025-01-31,14:47:51.872 | httpcore.http11 | trace:
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 31 Jan 2025 19:47:51 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-rpewjl4txdf6ojgesvaa5uyz'), (b'openai-processing-ms', b'638'), (b'openai-version', b'2020-10-01'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9993'), (b'x-ratelimit-remaining-tokens', b'199633'), (b'x-ratelimit-reset-requests', b'55.582s'), (b'x-ratelimit-reset-tokens', b'109ms'), (b'x-request-id', b'req_2b4518d9591c1d19ecc88884ca069005'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=eEteg4VvO2YPksdd_9CopVhKLTYmpJKjd3OWq.i0LCM-1738352871-1.0.1.1-J5ig4.hhhEH6AlUO5JSfC3GrbXd0qMjKMGeE6cQ0UcAEYYvYXekko4uujrvWYNL58UJqYJlgDeh.XeIyr.9GRw; path=/; expires=Fri, 31-Jan-25 20:17:51 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=qqN3ZUStMSJ8VeEnWu8vfhBkWGbWHO8jtt4FhBYZPrQ-1738352871484-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'90ac3741ff70c477-EWR'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:51.872 | httpx        | _send_single_request:
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+
+2025-01-31,14:47:51.873 | httpcore.http11 | trace:
+receive_response_body.started request=<Request [b'POST']>
+
+2025-01-31,14:47:51.878 | httpcore.http11 | trace:
+receive_response_body.complete
+
+2025-01-31,14:47:51.878 | httpcore.http11 | trace:
+response_closed.started
+
+2025-01-31,14:47:51.878 | httpcore.http11 | trace:
+response_closed.complete
+
+2025-01-31,14:47:51.878 | openai._base_client | _request:
+HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 31 Jan 2025 19:47:51 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-rpewjl4txdf6ojgesvaa5uyz'), ('openai-processing-ms', '638'), ('openai-version', '2020-10-01'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9993'), ('x-ratelimit-remaining-tokens', '199633'), ('x-ratelimit-reset-requests', '55.582s'), ('x-ratelimit-reset-tokens', '109ms'), ('x-request-id', 'req_2b4518d9591c1d19ecc88884ca069005'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=eEteg4VvO2YPksdd_9CopVhKLTYmpJKjd3OWq.i0LCM-1738352871-1.0.1.1-J5ig4.hhhEH6AlUO5JSfC3GrbXd0qMjKMGeE6cQ0UcAEYYvYXekko4uujrvWYNL58UJqYJlgDeh.XeIyr.9GRw; path=/; expires=Fri, 31-Jan-25 20:17:51 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=qqN3ZUStMSJ8VeEnWu8vfhBkWGbWHO8jtt4FhBYZPrQ-1738352871484-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '90ac3741ff70c477-EWR'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+
+2025-01-31,14:47:51.878 | openai._base_client | _request:
+request_id: req_2b4518d9591c1d19ecc88884ca069005
+
+2025-01-31,14:47:51.881 | promptwizard.glue.promptopt.instantiate | get_best_prompt:
+Time taken to find best prompt: 36.87307810783386 sec
+
+2025-01-31,14:47:51.935 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.936 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.complete
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.started
+
+2025-01-31,14:47:51.938 | httpcore.connection | trace:
+close.complete
+
