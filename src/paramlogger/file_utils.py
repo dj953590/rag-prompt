@@ -69,7 +69,7 @@ def str_list_to_dir_path(str_list: List[str]) -> str:
 
     e.g.
     str_list=["dir_1", "sub_dir_1"]
-    return "dir_1\sub_dir_1"
+    return "dir_1\\sub_dir_1"
     """
     if not str_list:
         return ""

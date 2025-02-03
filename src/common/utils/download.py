@@ -3,8 +3,8 @@ import requests
 
 from pathlib import Path
 from urllib.parse import urlparse
-from glue.common.constants.str_literals import DirNames
-from glue.common.utils.logging import get_glue_logger
+from src.common.constants.str_literals import DirNames
+from src.common.utils.logging import get_glue_logger
 
 logger = get_glue_logger(__name__)
 

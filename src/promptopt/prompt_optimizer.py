@@ -5,8 +5,8 @@ from typing import Any
 
 from ..common.base_classes import SetupConfig
 from ..common.constants.log_strings import CommonLogsStr
-from src.common.utils import get_glue_logger, set_logging_config
-from src.common.utils import read_jsonl, yaml_to_class, yaml_to_dict, read_jsonl_row
+from src.common.utils.logging import get_glue_logger, set_logging_config
+from src.common.utils.file import read_jsonl, yaml_to_class, yaml_to_dict, read_jsonl_row
 from src.paramlogger import ParamLogger
 from ..promptopt.constants import PromptOptimizationLiterals
 from ..promptopt.techniques.common_logic import DatasetSpecificProcessing

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 # TODO: add comments  for class definition and variable definition
 # This file has classes storing constant literals
 
@@ -43,3 +44,14 @@ class LLMLiterals:
     COMPLETION_LLM_TOKEN_COUNT = "completion_llm_token_count"
     TOTAL_LLM_TOKEN_COUNT = "total_llm_token_count"
 
+
+@dataclass
+class DirNames:
+    PACKAGE_BASE_DIR = "llama_index"
+    MODEL_DIR = "model"
+    DATA_DIR = "data"
+    CONFIG_DIR = "config"
+    LOG_DIR = "logs"
+    CACHE_DIR = "cache"
+    CACHE_FILE = "cache.pkl"
+    CACHE_FILE_NAME = "cache"

@@ -2,7 +2,7 @@ import sys
 
 sys.path.insert(0, "../../")
 
-from src.promptopt import PromptOptimizer
+from src.promptopt.prompt_optimizer import PromptOptimizer
 import os
 
 from dotenv import load_dotenv
@@ -16,12 +16,11 @@ path_to_config = "configs"
 prompt_opt_config_path = os.path.join(path_to_config, "promptopt_config.yaml")
 setup_config_path = os.path.join(path_to_config, "setup_config.yaml")
 
-
 gp = PromptOptimizer(prompt_opt_config_path,
-                   setup_config_path,
-                   dataset_jsonl=None,
-                   data_processor=None)
+                     setup_config_path,
+                     dataset_jsonl=None,
+                     data_processor=None)
 
 best_prompt, expert_profile = gp.get_best_prompt(use_examples=False, run_without_train_examples=True,
                                                  generate_synthetic_examples=False)
-print(f"Best prompt: {best_prompt} \nExpert profile: {expert_profile}")
+#print(f"Best prompt: {best_prompt} \nExpert profile: {expert_profile}")
