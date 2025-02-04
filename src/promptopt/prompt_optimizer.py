@@ -11,7 +11,9 @@ from src.paramlogger import ParamLogger
 from ..promptopt.constants import PromptOptimizationLiterals
 from ..promptopt.techniques.common_logic import DatasetSpecificProcessing
 from ..promptopt.utils import get_promptopt_class
+from rich import traceback
 
+traceback.install()
 
 class PromptOptimizer:
     """

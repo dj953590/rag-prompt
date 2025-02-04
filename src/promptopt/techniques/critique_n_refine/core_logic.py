@@ -13,7 +13,9 @@ from ....common.constants.log_strings import CommonLogsStr
 from ...constants import PromptOptimizationParams, SupportedPromptOpt
 from ...techniques.common_logic import DatasetSpecificProcessing, PromptOptimizer
 from ...techniques.critique_n_refine.base_classes import CritiqueNRefinePromptPool
+from rich import traceback
 
+traceback.install()
 
 def extract_between(start, end, text):
     """
